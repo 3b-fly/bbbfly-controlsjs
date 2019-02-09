@@ -1,0 +1,51 @@
+{
+  "name": "@controlsjs/controlsjs",
+  "version": "5.1.0-dev",
+  "releaseyear": "2014",
+  "homepage": "http://controlsjs.com/",
+  "author": "Position s.r.o.",
+  "repository" : {
+   "type" : "git",
+   "url" : "https://github.com/controlsjs/controls.js.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-closurecompiler": "~0.9.9",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-banner": "~0.6.0",
+    "grunt-contrib-cssmin": "~0.12.3"
+  },
+  "license": "GPL-3.0",
+  "licenses": [
+    { "type": "GPL-3.0",             "url": "http://www.gnu.org/licenses/gpl-3.0.html" },
+    { "type": "Commercial Software", "url": "http://controlsjs.com/license.html" }
+  ],
+  "lib_knockout": {
+    "version": "3.4.0",
+    "homepage": "http://knockoutjs.com/",
+    "licenses": [
+      { "type": "MIT", "url": "http://www.opensource.org/licenses/mit-license.php" }
+    ]
+  },
+  "lib_hammerjs": {
+    "version": "1.0.10",
+    "homepage": "http://eightmedia.github.com/hammer.js",
+    "author": {
+      "name": "Jorik Tangelder",
+      "email": "j.tangelder@gmail.com"
+    },
+    "licenses": [
+      { "type": "MIT", "url": "https://github.com/eightmedia/hammer.js/blob/master/LICENSE" }
+    ]
+  },
+  "lib_FontLoader": {
+    "version": "0.0.3",
+    "homepage": "https://github.com/smnh/FontLoader",
+    "licenses": [
+      { "type": "MIT", "url": "http://www.opensource.org/licenses/mit-license.php" }
+    ]
+  }
+}
