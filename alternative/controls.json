@@ -1,0 +1,64 @@
+{
+  "Lib": "controls.js",
+  "Version": "dev",
+  "Name": "Controls.js",
+  "Copyright": "Position s.r.o.",
+  "Packages": {
+
+    "DesignInfo": {
+      "Group": "controlsjs",
+      "FormEditor": false,
+      "DesignInfoFiles": ["debug/designinfo.js"]
+    },
+
+    "Lang EN": {
+      "Group": "controlsjs",
+      "FormEditor": false,
+      "DebugFiles": ["debug/lang/en.js"],
+      "ReleaseFiles": ["release/lang/en.js"]
+    },
+    "Lang CS": {
+      "Group": "controlsjs",
+      "FormEditor": false,
+      "DebugFiles": ["debug/lang/cs.js"],
+      "ReleaseFiles": ["release/lang/cs.js"]
+    },
+    "Lang SK": {
+      "Group": "controlsjs",
+      "FormEditor": false,
+      "DebugFiles": [ "debug/lang/sk.js"],
+      "ReleaseFiles": ["release/lang/sk.js"]
+    },
+
+    "Loader": {
+      "Group": "controlsjs",
+      "FormEditor": false,
+      "DebugFiles": ["debug/loader.js"],
+      "ReleaseFiles": ["release/loader.js"]
+    },
+    "Controls.js": {
+      "Group": "controlsjs",
+      "FormEditor": false,
+      "DebugFiles": ["debug/controls.js"],
+      "ReleaseFiles": ["release/controls.js"],
+      
+      "Libraries": {
+        "controls.js": {
+          "Packages": ["Loader","Lang EN"]
+        }
+      }
+    },
+    "Controls.js UI": {
+      "Group": "controlsjs",
+      "FormEditor": false,
+      "DebugFiles": ["debug/controls-ui.js"],
+      "ReleaseFiles": ["release/controls-ui.js"],
+
+      "Libraries": {
+        "controls.js": {
+          "Packages": ["Controls.js"]
+        }
+      }
+    }
+  }
+}
