@@ -177,7 +177,10 @@ module.exports = function(grunt) {
     clean: [build.releaseBuild('loader.js')],
     closurecompiler: {
       files: build.compilerFiles('loader.js','loader'),
-      options: { compilation_level: 'SIMPLE_OPTIMIZATIONS' }
+       options: {
+        compilation_level: 'SIMPLE_OPTIMIZATIONS',
+        strict_mode_input: 'false'
+      }
     },
     usebanner: build.releaseBanner('loader.js','controlsjs')
   });
@@ -260,7 +263,10 @@ module.exports = function(grunt) {
     clean: [build.releaseBuild('controls.js')],
     closurecompiler: {
       files: build.compilerFiles('controls.js','controlsjs'),
-      options: { compilation_level: 'SIMPLE_OPTIMIZATIONS' }
+      options: {
+        compilation_level: 'SIMPLE_OPTIMIZATIONS',
+        strict_mode_input: 'false'
+      }
     },
     usebanner: build.releaseBanner('controls.js','controlsjs'),
     'ng_basic-release': true,
@@ -300,7 +306,10 @@ module.exports = function(grunt) {
     clean: [build.releaseBuild('controls-ui.js')],
     closurecompiler: {
       files: build.compilerFiles('controls-ui.js','controlsjs_ui'),
-      options: { compilation_level: 'SIMPLE_OPTIMIZATIONS' }
+      options: {
+        compilation_level: 'SIMPLE_OPTIMIZATIONS',
+        strict_mode_input: 'false'
+      }
     },
     usebanner: build.releaseBanner('controls-ui.js','controlsjs'),
     execute: addons.add({langs: 'controlsjs_ui',di: 'controlsjs_ui'})
