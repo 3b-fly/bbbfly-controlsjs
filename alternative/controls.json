@@ -1,6 +1,6 @@
 {
   "Lib": "controls.js",
-  "Version": "dev",
+  "Version": "5.0.0",
   "Name": "Controls.js",
   "Copyright": "Position s.r.o.",
   "Packages": {
@@ -41,7 +41,7 @@
       "FormEditor": false,
       "DebugFiles": ["debug/controls.js"],
       "ReleaseFiles": ["release/controls.js"],
-      
+
       "Libraries": {
         "controls.js": {
           "Packages": ["Loader","Lang EN"]
