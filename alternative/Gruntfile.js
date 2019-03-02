@@ -4,7 +4,8 @@ module.exports = function(grunt) {
   var addons = require("./grunt/grunt_addons.js")(grunt,build);
 
   var packageJSON = grunt.file.readJSON('package.json');
-  grunt.file.write('VERSION',packageJSON.version); // Update VERSION file
+  grunt.file.write('VERSION',packageJSON.version);
+
   var config = { pkg: packageJSON };
 
   build.setConfig(config);
@@ -177,7 +178,7 @@ module.exports = function(grunt) {
     clean: [build.releaseBuild('loader.js')],
     closurecompiler: {
       files: build.compilerFiles('loader.js','loader'),
-       options: {
+      options: {
         compilation_level: 'SIMPLE_OPTIMIZATIONS',
         strict_mode_input: 'false'
       }
@@ -374,6 +375,21 @@ module.exports = function(grunt) {
 
   grunt.registerTask('designinfo',['designinfo-debug']);
 
+  // ==  Controls.js JSON file =================================================
+
+  build.registerTask('controls-json',{
+    clean: ['build/controls.json'],
+    copy: {
+      files: [{
+        src: 'controls.json',
+        dest: 'build/controls.json'
+      }]
+    }
+  });
+
+  grunt.registerTask('clean-json',['clean:controls-json']);
+  grunt.registerTask('copy-json',['copy:controls-json']);
+
   // == Clean ==================================================================
 
   build.registerConfig('clean-debug',{
@@ -386,7 +402,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('clean-debug',['clean:clean-debug']);
   grunt.registerTask('clean-release',['clean:clean-release']);
-  grunt.registerTask('clean',['clean-debug','clean-release']);
+  grunt.registerTask('clean',['clean-debug','clean-release','clean-json']);
 
   // == Builds =================================================================
 
@@ -413,7 +429,8 @@ module.exports = function(grunt) {
     'controls',
     'controls-ui',
     'langs',
-    'designinfo'
+    'designinfo',
+    'copy-json'
   ]);
 
   // ---------------------------------------------------------------------------
