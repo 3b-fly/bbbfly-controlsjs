@@ -4,9 +4,9 @@
   "releaseyear": "2014",
   "homepage": "http://controlsjs.com/",
   "author": "Position s.r.o.",
-  "repository" : {
-   "type" : "git",
-   "url" : "https://github.com/controlsjs/controls.js.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/controlsjs/controls.js.git"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
@@ -17,18 +17,28 @@
     "grunt-contrib-clean": "~0.5.0",
     "grunt-banner": "~0.6.0",
     "grunt-contrib-cssmin": "~0.12.3",
+    "grunt-cli": "~1.4.3",
     "grunt-execute": "~0.2.2"
   },
   "license": "GPL-3.0",
   "licenses": [
-    { "type": "GPL-3.0",             "url": "http://www.gnu.org/licenses/gpl-3.0.html" },
-    { "type": "Commercial Software", "url": "http://controlsjs.com/license.html" }
+    {
+      "type": "GPL-3.0",
+      "url": "http://www.gnu.org/licenses/gpl-3.0.html"
+    },
+    {
+      "type": "Commercial Software",
+      "url": "http://controlsjs.com/license.html"
+    }
   ],
   "lib_knockout": {
     "version": "3.4.0",
     "homepage": "http://knockoutjs.com/",
     "licenses": [
-      { "type": "MIT", "url": "http://www.opensource.org/licenses/mit-license.php" }
+      {
+        "type": "MIT",
+        "url": "http://www.opensource.org/licenses/mit-license.php"
+      }
     ]
   },
   "lib_hammerjs": {
@@ -39,14 +49,20 @@
       "email": "j.tangelder@gmail.com"
     },
     "licenses": [
-      { "type": "MIT", "url": "https://github.com/eightmedia/hammer.js/blob/master/LICENSE" }
+      {
+        "type": "MIT",
+        "url": "https://github.com/eightmedia/hammer.js/blob/master/LICENSE"
+      }
     ]
   },
   "lib_FontLoader": {
     "version": "0.0.3",
     "homepage": "https://github.com/smnh/FontLoader",
     "licenses": [
-      { "type": "MIT", "url": "http://www.opensource.org/licenses/mit-license.php" }
+      {
+        "type": "MIT",
+        "url": "http://www.opensource.org/licenses/mit-license.php"
+      }
     ]
   }
 }
