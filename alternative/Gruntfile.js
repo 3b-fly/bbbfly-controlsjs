@@ -423,7 +423,7 @@ module.exports = function(grunt) {
     'langs-release'
   ]);
 
-  grunt.registerTask('default',[
+  grunt.registerTask('build',[
     'clean',
     'loader',
     'controls',
@@ -432,6 +432,8 @@ module.exports = function(grunt) {
     'designinfo',
     'copy-json'
   ]);
+
+  grunt.registerTask('default','build');
 
   // ---------------------------------------------------------------------------
 
