@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function(grunt){
 
   var _this = null;
   var _config = null;
@@ -97,7 +97,7 @@ module.exports = function(grunt) {
       }
     },
 
-    registerTask: function(taskid,actions,noregister){
+    registerTask: function(taskid,actions){
       var actlist=[];
       if(_config){
         for(var i in actions) {
@@ -108,7 +108,7 @@ module.exports = function(grunt) {
           }
           else actlist.push(i);
         }
-        if(!noregister) grunt.registerTask(taskid, actlist);
+        grunt.registerTask(taskid,actlist);
       }
       return actlist;
     },
