@@ -3,12 +3,9 @@ module.exports = function(grunt,build) {
   var _this = null;
   var _lang_files = {};
   var _lang_files_to_add = {};
-  var _di_files = {};
-  var _di_files_to_add = {};
 
   function _doAdd(grunt,options){
     if(options.langs){options.langs.fnc(options.langs.files);}
-    if(options.di){options.di.fnc(options.di.files);}
   }
 
   function _doAddLangs(files){
@@ -20,13 +17,6 @@ module.exports = function(grunt,build) {
       for(var i in files[lang]){
         _lang_files_to_add[lang][files[lang][i]] = true;
       }
-    }
-  }
-
-  function _doAddDis(files){
-    if(!files){return;}
-    for(var i in files){
-      _di_files_to_add[files[i]] = true;
     }
   }
 
@@ -43,13 +33,6 @@ module.exports = function(grunt,build) {
           };
           addcall = true;
         break;
-        case 'di':
-          opts.di = {
-            dest: options[i],
-            fnc: _doOutputDis
-          };
-          addcall = true;
-        break;
       }
       exec.options = opts;
     }
@@ -61,7 +44,6 @@ module.exports = function(grunt,build) {
 
   function _doOutput(grunt,options){
     if(options.langs){options.langs.fnc(options.debug,options.langs.dest);}
-    if(options.di){options.di.fnc(options.debug,options.di.dest);}
   }
 
   function _doOutputLangs(debug,dest){
@@ -96,24 +78,6 @@ module.exports = function(grunt,build) {
     }
   }
 
-  function _doOutputDis(debug,dest){
-    if(!debug){return;}
-
-    var files = [];
-    for(var file in _di_files_to_add){
-      files.push(file);
-    }
-
-    var diTaskName = grunt.task.current.target+'-di';
-    build.registerTask(diTaskName,{
-      concat: {
-        src: files,
-        dest: build.debugBuild(dest)
-      }
-    });
-    grunt.task.run('concat:'+diTaskName);
-  }
-
   _this = {
 
     loadPlugins: function(){
@@ -123,10 +87,6 @@ module.exports = function(grunt,build) {
 
     defineLangFiles: function(taskName,files){
       _lang_files[taskName] = files;
-    },
-
-    defineDiFiles: function(taskName,files){
-      _di_files[taskName] = files;
     },
 
     getLangFiles: function(taskNames){
@@ -159,22 +119,6 @@ module.exports = function(grunt,build) {
       return result;
     },
 
-    getDiFiles: function(taskNames){
-      var result = [];
-      if(typeof taskNames !== 'object'){taskNames = [taskNames];}
-      for(var i in taskNames){
-        var diFiles = _di_files[taskNames[i]];
-        if(typeof diFiles === 'function'){diFiles = diFiles();}
-        for(var j in diFiles){
-          result.push(diFiles[j]);
-        }
-      }
-      for(var i=1;i < arguments.length;i++){
-        result.push(arguments[i]);
-      }
-      return result;
-    },
-
     add: function(options){
       var exec = { options: {} };
       var addcall = false;
@@ -184,13 +128,6 @@ module.exports = function(grunt,build) {
             exec.options.langs = {
               files: _this.getLangFiles(options[i]),
               fnc: _doAddLangs
-            };
-            addcall = true;
-          break;
-          case 'di':
-            exec.options.di = {
-              files: _this.getDiFiles(options[i]),
-              fnc: _doAddDis
             };
             addcall = true;
           break;

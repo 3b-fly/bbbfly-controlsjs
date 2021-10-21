@@ -204,10 +204,6 @@ module.exports = function(grunt) {
     sk: 'src/ng_basic/lang/sk/*.js'
   });
 
-  addons.defineDiFiles('controlsjs',[
-    'src/ng_controls/designinfo/*.js'
-  ]);
-
   build.registerTask('ng_basic-debug',{
     clean: [build.debugBuild('ng_basic/')],
     copy: {
@@ -257,7 +253,7 @@ module.exports = function(grunt) {
     usebanner: build.debugBanner('controls.js',['controlsjs']),
     'ng_basic-debug': true,
     'ng_controls-debug': true,
-    execute: addons.add({langs: 'controlsjs',di: 'controlsjs'})
+    execute: addons.add({langs: 'controlsjs'})
   });
 
   build.registerTask('controls-release',{
@@ -272,7 +268,7 @@ module.exports = function(grunt) {
     usebanner: build.releaseBanner('controls.js','controlsjs'),
     'ng_basic-release': true,
     'ng_controls-release': true,
-    execute: addons.add({langs: 'controlsjs',di: 'controlsjs'})
+    execute: addons.add({langs: 'controlsjs'})
   });
 
   grunt.registerTask('controls',['controls-debug','controls-release']);
@@ -289,10 +285,6 @@ module.exports = function(grunt) {
     sk: 'src/ng_controls/ui/lang/sk/*.js'
   });
 
-  addons.defineDiFiles('controlsjs_ui',[
-    'src/ng_controls/ui/designinfo/*.js'
-  ]);
-
   build.registerTask('controls-ui-raw-debug',{
     clean: [build.debugBuild('controls-ui.js')],
     concat: {
@@ -300,7 +292,7 @@ module.exports = function(grunt) {
       dest: build.debugBuild('controls-ui.js')
     },
     usebanner: build.debugBanner('controls-ui.js',['controlsjs']),
-    execute: addons.add({langs: 'controlsjs_ui',di: 'controlsjs_ui'})
+    execute: addons.add({langs: 'controlsjs_ui'})
   });
 
   build.registerTask('controls-ui-raw-release',{
@@ -313,7 +305,7 @@ module.exports = function(grunt) {
       }
     },
     usebanner: build.releaseBanner('controls-ui.js','controlsjs'),
-    execute: addons.add({langs: 'controlsjs_ui',di: 'controlsjs_ui'})
+    execute: addons.add({langs: 'controlsjs_ui'})
   });
 
   build.registerTask('controls-ui-debug',{
@@ -365,16 +357,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('langs',['langs-debug','langs-release']);
 
-  // == Controls.js Design Info ================================================
-
-  build.registerTask('designinfo-debug',{
-    clean: [build.debugBuild('designinfo.js')],
-    execute: addons.outputDebug({ di: 'designinfo.js' }),
-    usebanner: build.debugBanner('designinfo.js','controlsjs')
-  });
-
-  grunt.registerTask('designinfo',['designinfo-debug']);
-
   // ==  Controls.js JSON file =================================================
 
   build.registerTask('controls-json',{
@@ -411,8 +393,7 @@ module.exports = function(grunt) {
     'loader-debug',
     'controls-debug',
     'controls-ui-debug',
-    'langs-debug',
-    'designinfo-debug'
+    'langs-debug'
   ]);
 
   grunt.registerTask('release',[
@@ -429,7 +410,6 @@ module.exports = function(grunt) {
     'controls',
     'controls-ui',
     'langs',
-    'designinfo',
     'copy-json'
   ]);
 
