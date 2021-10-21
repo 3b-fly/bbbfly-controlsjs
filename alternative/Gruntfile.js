@@ -441,7 +441,6 @@ module.exports = function(grunt) {
 
   //Load the plugins
   addons.loadPlugins();
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-closurecompiler');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
