@@ -1,431 +1,346 @@
-module.exports = function(grunt) {
+module.exports = function(grunt){
+  var path = require('path');
 
-  var build = require("./grunt/grunt_build.js")(grunt);
-  var addons = require("./grunt/grunt_addons.js")(grunt,build);
+  var srcPath = 'src';
+  var libsPath = 'libs';
+
+  var buildPath = 'build';
+  var debugPath = 'debug';
+  var releasePath = 'release';
+
+  var tempDir = buildPath+'/.temp';
+  var debugDir = buildPath+'/'+debugPath;
+  var releaseDir = buildPath+'/'+releasePath;
 
   var packageJSON = grunt.file.readJSON('package.json');
-  grunt.file.write('VERSION',packageJSON.version);
+  var controlsJSON = grunt.file.readJSON('controls.json');
 
-  var config = { pkg: packageJSON };
+  controlsJSON.Lib = packageJSON.name;
+  controlsJSON.Version = packageJSON.version;
+  controlsJSON.Name = packageJSON.description;
+  controlsJSON.Copyright = packageJSON.author.name;
 
-  build.setConfig(config);
-  build.defineBanner('controlsjs',grunt.file.read('src/srcheader.txt'));
+  var normalizeLinebreak = function(text){
+    return text.replace(/( |\t)*(\r\n|\n\r|\r|\n)/g,'\n');
+  };
 
-  // == Libraries ==============================================================
-
-  build.defineFiles('libs',[
-    'src/loader/libs.js'
-  ]);
-
-  build.registerTask('libs-debug',{
-    clean: [build.debugBuild('libs.js')],
-    concat: {
-      src: build.getFiles('libs'),
-      dest: build.debugBuild('libs.js')
+  grunt.initConfig({
+    pkg: packageJSON,
+    clean: {
+      build: [buildPath],
+      temp: [tempDir]
     },
-    usebanner: build.debugBanner('libs.js','controlsjs')
-  });
-
-  build.registerTask('libs-release',{
-    clean: [build.releaseBuild('libs.js')],
-    closurecompiler: {
-      files: build.compilerFiles('libs.js','libs'),
-      options: { compilation_level: 'SIMPLE_OPTIMIZATIONS' }
-    },
-    usebanner: build.releaseBanner('libs.js','controlsjs')
-  });
-
-  grunt.registerTask('libs',['libs-debug','libs-release']);
-
-  // == Library: Hammer.js =====================================================
-
-  build.defineBanner('hammerjs','\n' +
-    '/*!\n' +
-    ' * Hammer.JS - v<%= pkg.lib_hammerjs.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-    ' * <%= pkg.lib_hammerjs.homepage %>\n' +
-    ' *\n' +
-    ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.lib_hammerjs.author.name %> <<%= pkg.lib_hammerjs.author.email %>>;\n' +
-    ' * Licensed under the <%= _.pluck(pkg.lib_hammerjs.licenses, "type").join(", ") %> license */\n\n'
-  );
-
-  build.defineFiles('lib_hammerjs',[
-    'libs/lib_hammerjs/hammer.js'
-  ]);
-
-  build.registerTask('lib_hammerjs-debug',{
-    clean: [build.debugBuild('hammerjs.js')],
-    concat: {
-      src: build.getFiles('lib_hammerjs'),
-      dest: build.debugBuild('hammerjs.js')
-    },
-    usebanner: build.debugBanner('hammerjs.js','hammerjs')
-  });
-
-  build.registerTask('lib_hammerjs-release',{
-    clean: [build.releaseBuild('hammerjs.js')],
-    closurecompiler: {
-      files: build.compilerFiles('hammerjs.js','lib_hammerjs'),
-      options: { compilation_level: 'SIMPLE_OPTIMIZATIONS' }
-    },
-    usebanner: build.releaseBanner('hammerjs.js','hammerjs')
-  });
-
-  grunt.registerTask('lib_hammerjs',['lib_hammerjs-debug','lib_hammerjs-release']);
-
-  // == Library: Knockout.js ===================================================
-
-  build.defineBanner('knockout','\n' +
-    '/*!\n' +
-    ' * Knockout JavaScript library v<%= pkg.lib_knockout.version %>\n' +
-    ' * (c) Steven Sanderson - <%= pkg.lib_knockout.homepage %>\n' +
-    ' * License: <%= pkg.lib_knockout.licenses[0].type %> (<%= pkg.lib_knockout.licenses[0].url %>)\n' +
-    ' */\n\n'
-  );
-
-  build.defineFiles('lib_knockout',[
-    'libs/lib_knockout/src/namespace.js',
-    'libs/lib_knockout/src/google-closure-compiler-utils.js',
-    'libs/lib_knockout/src/version.js',
-    'libs/lib_knockout/src/options.js',
-    'libs/lib_knockout/src/tasks.js',
-    'libs/lib_knockout/src/utils.js',
-    'libs/lib_knockout/src/utils.domData.js',
-    'libs/lib_knockout/src/subscribables/extenders.js',
-    'libs/lib_knockout/src/subscribables/subscribable.js',
-    'libs/lib_knockout/src/subscribables/dependencyDetection.js',
-    'libs/lib_knockout/src/subscribables/observable.js',
-    'libs/lib_knockout/src/subscribables/observableArray.js',
-    'libs/lib_knockout/src/subscribables/observableArray.changeTracking.js',
-    'libs/lib_knockout/src/subscribables/dependentObservable.js',
-    'libs/lib_knockout/src/subscribables/mappingHelpers.js',
-    'libs/lib_knockout/src/binding/bindingProvider.js',
-    'libs/lib_knockout/src/binding/expressionRewriting.js',
-    'libs/lib_knockout/src/binding/bindingAttributeSyntax.js'
-  ]);
-
-  build.registerTask('lib_knockout-debug',{
-    clean: [build.debugBuild('knockout.js')],
-    concat: {
-      src: build.getFiles('lib_knockout'),
-      dest: build.debugBuild('knockout.js')
-    },
-    usebanner: build.debugBanner('knockout.js','knockout')
-  });
-
-  build.registerTask('lib_knockout-release',{
-    clean: [build.releaseBuild('knockout.js')],
-    closurecompiler: {
-      files: build.compilerFiles('knockout.js','lib_knockout'),
-      options: { compilation_level: 'SIMPLE_OPTIMIZATIONS' }
-    },
-    usebanner: build.releaseBanner('knockout.js','knockout')
-  });
-
-  grunt.registerTask('lib_knockout',['lib_knockout-debug','lib_knockout-release']);
-
-  // == Library: FontLoader.js =================================================
-
-  build.defineBanner('fontloader','\n' +
-    '/*!\n' +
-    ' * FontLoader.js v<%= pkg.lib_FontLoader.version %>\n' +
-    ' * (c) 2013 Simon Hanukaev - <%= pkg.lib_FontLoader.homepage %>\n' +
-    ' * License: <%= pkg.lib_FontLoader.licenses[0].type %> (<%= pkg.lib_FontLoader.licenses[0].url %>)\n' +
-    ' */\n\n'
-  );
-
-  build.defineFiles('lib_fontloader',[
-    'libs/lib_FontLoader/FontLoader.js'
-  ]);
-
-  build.registerTask('lib_fontloader-debug',{
-    clean: [build.debugBuild('fontloader.js')],
-    concat: {
-      src: build.getFiles('lib_fontloader'),
-      dest: build.debugBuild('fontloader.js')
-    },
-    usebanner: build.debugBanner('fontloader.js','fontloader')
-  });
-
-  build.registerTask('lib_fontloader-release',{
-    clean: [build.releaseBuild('fontloader.js')],
-    closurecompiler: {
-      files: build.compilerFiles('fontloader.js','lib_fontloader'),
-      options: { compilation_level: 'SIMPLE_OPTIMIZATIONS' }
-    },
-    usebanner: build.releaseBanner('fontloader.js','fontloader')
-  });
-
-  grunt.registerTask('lib_fontloader',['lib_fontloader-debug','lib_fontloader-release']);
-
-  // == Loader =================================================================
-
-  build.defineFiles('loader',[
-    'src/loader/libs.js',
-    'src/loader/loader.js',
-    'src/loader/devices.js'
-  ]);
-
-  build.registerTask('loader-debug',{
-    clean: [build.debugBuild('loader.js')],
-    concat: {
-      src: build.getFiles('loader'),
-      dest: build.debugBuild('loader.js')
-    },
-    usebanner: build.debugBanner('loader.js',['controlsjs'])
-  });
-
-  build.registerTask('loader-release', {
-    clean: [build.releaseBuild('loader.js')],
-    closurecompiler: {
-      files: build.compilerFiles('loader.js','loader'),
-      options: {
-        compilation_level: 'SIMPLE_OPTIMIZATIONS',
-        strict_mode_input: 'false'
+    copy: {
+      lib_json2_debug: {
+        files: [{
+          cwd: libsPath,
+          src: ['lib_json2/*.js'],
+          dest: tempDir+'/json2',
+          expand: true
+        }]
+      },
+      lib_hammerjs_debug: {
+        files: [{
+          cwd: libsPath,
+          src: ['lib_hammerjs/*.js'],
+          dest: tempDir+'/hammerjs',
+          expand: true
+        }]
+      },
+      lib_fontloader_debug: {
+        files: [{
+          cwd: libsPath,
+          src: ['lib_FontLoader/*.js'],
+          dest: tempDir+'/fontloader',
+          expand: true
+        }]
+      },
+      loader_src_debug: {
+        options: {
+          process: function(content){
+            return normalizeLinebreak(content);
+          }
+        },
+        files: [{
+          cwd: srcPath,
+          src: ['loader/loader.js','loader/devices.js'],
+          dest: tempDir+'/loader',
+          expand: true
+        }]
+      },
+      core_src_debug: {
+        options: {
+          process: function(content){
+            return normalizeLinebreak(content);
+          }
+        },
+        files: [{
+          cwd: srcPath,
+          src: [
+            'ng_misc/*.js','ng_basic/*.js',
+            'ng_controls/*.js','ng_controls/settings/*.js'
+          ],
+          dest: tempDir+'/core',
+          expand: true
+        }]
+      },
+      core_imgs_debug: {
+        files: [{
+          cwd: srcPath,
+          src: [
+            'ng_misc/**/*.{png,jpg,gif}','ng_basic/**/*.{png,jpg,gif}',
+            'ng_controls/images/**/*.{png,jpg,gif}'
+          ],
+          dest: debugDir,
+          expand: true
+        }]
+      },
+      ui_src_debug: {
+        options: {
+          process: function(content){
+            return normalizeLinebreak(content);
+          }
+        },
+        files: [{
+          cwd: srcPath,
+          src: ['ng_controls/ui/*.js'],
+          dest: tempDir+'/ui',
+          expand: true
+        }]
+      },
+      imgs_release: {
+        files: [{
+          cwd: debugDir,
+          src: ['**/*.{png,jpg,gif}'],
+          dest: releaseDir,
+          expand: true
+        }]
+      },
+      lang_en_debug: {
+        files: [{
+          cwd: srcPath,
+          src: [
+            'ng_basic/lang/en/*.js',
+            'ng_controls/ui/lang/en/*.js'
+          ],
+          dest: tempDir+'/lang_en',
+          expand: true
+        }]
+      },
+      lang_cs_debug: {
+        files: [{
+          cwd: srcPath,
+          src: [
+            'ng_basic/lang/cs/*.js',
+            'ng_controls/ui/lang/cs/*.js'
+          ],
+          dest: tempDir+'/lang_cs',
+          expand: true
+        }]
+      },
+      lang_sk_debug: {
+        files: [{
+          cwd: srcPath,
+          src: [
+            'ng_basic/lang/sk/*.js',
+            'ng_controls/ui/lang/sk/*.js'
+          ],
+          dest: tempDir+'/lang_sk',
+          expand: true
+        }]
+      },
+      license: {
+        options: {
+          process: function(content){
+            return normalizeLinebreak(content);
+          }
+        },
+        files: [
+          {
+            src: 'License Commercial Software.txt',
+            dest: debugDir,
+            expand: true
+          },
+          {
+            src: 'License Commercial Software.txt',
+            dest: releaseDir,
+            expand: true
+          }
+        ]
       }
     },
-    usebanner: build.releaseBanner('loader.js','controlsjs')
-  });
-
-  grunt.registerTask('loader',['loader-debug','loader-release']);
-
-  // == Controls.js: Core ======================================================
-
-  build.defineFiles('controlsjs',[
-    'src/ng_misc/*.js',
-    'src/ng_basic/*.js',
-    'src/ng_controls/*.js',
-    'src/ng_controls/settings/*.js',
-    'libs/lib_json2/*.js'
-  ]);
-
-  addons.defineLangFiles('controlsjs',{
-    cs: 'src/ng_basic/lang/cs/*.js',
-    en: 'src/ng_basic/lang/en/*.js',
-    sk: 'src/ng_basic/lang/sk/*.js'
-  });
-
-  build.registerTask('ng_basic-debug',{
-    clean: [build.debugBuild('ng_basic/')],
-    copy: {
-      expand: true,
-      cwd: 'src/ng_basic/',
-      src: 'empty.gif',
-      dest: build.debugBuild('ng_basic/')
-    }
-  });
-
-  build.registerTask('ng_basic-release',{
-    clean: [build.releaseBuild('ng_basic/')],
-    copy: {
-      expand: true,
-      cwd: 'src/ng_basic/',
-      src: 'empty.gif',
-      dest: build.releaseBuild('ng_basic/')
-    }
-  });
-
-  build.registerTask('ng_controls-debug',{
-    clean: [build.debugBuild('ng_controls/')],
-    copy: {
-      expand: true,
-      cwd: 'src/ng_controls/',
-      src: 'images/**',
-      dest: build.debugBuild('ng_controls/')
-    }
-  });
-
-  build.registerTask('ng_controls-release',{
-    clean: [build.releaseBuild('ng_controls/')],
-    copy: {
-      expand: true,
-      cwd: 'src/ng_controls/',
-      src: 'images/**',
-      dest: build.releaseBuild('ng_controls/')
-    }
-  });
-
-  build.registerTask('controls-debug',{
-    clean: [build.debugBuild('controls.js')],
     concat: {
-      src: build.getFiles('controlsjs'),
-      dest: build.debugBuild('controls.js')
-    },
-    usebanner: build.debugBanner('controls.js',['controlsjs']),
-    'ng_basic-debug': true,
-    'ng_controls-debug': true,
-    execute: addons.add({langs: 'controlsjs'})
-  });
-
-  build.registerTask('controls-release',{
-    clean: [build.releaseBuild('controls.js')],
-    closurecompiler: {
-      files: build.compilerFiles('controls.js','controlsjs'),
-      options: {
-        compilation_level: 'SIMPLE_OPTIMIZATIONS',
-        strict_mode_input: 'false'
+      lib_json2_debug: {
+        src: tempDir+'/json2/**/*.js',
+        dest: debugDir+'/json2.js'
+      },
+      lib_hammerjs_debug: {
+        src: tempDir+'/hammerjs/**/*.js',
+        dest: debugDir+'/hammerjs.js'
+      },
+      lib_fontloader_debug: {
+        src: tempDir+'/fontloader/**/*.js',
+        dest: debugDir+'/fontloader.js'
+      },
+      loader_src_debug: {
+        src: tempDir+'/loader/**/*.js',
+        dest: debugDir+'/loader.js'
+      },
+      core_src_debug: {
+        src: tempDir+'/core/**/*.js',
+        dest: debugDir+'/controls.js'
+      },
+      ui_src_debug: {
+        src: tempDir+'/ui/**/*.js',
+        dest: debugDir+'/controls-ui.js'
+      },
+      lang_en_debug: {
+        src: tempDir+'/lang_en/**/*.js',
+        dest: debugDir+'/lang/en.js'
+      },
+      lang_cs_debug: {
+        src: tempDir+'/lang_cs/**/*.js',
+        dest: debugDir+'/lang/cs.js'
+      },
+      lang_sk_debug: {
+        src: tempDir+'/lang_sk/**/*.js',
+        dest: debugDir+'/lang/sk.js'
       }
     },
-    usebanner: build.releaseBanner('controls.js','controlsjs'),
-    'ng_basic-release': true,
-    'ng_controls-release': true,
-    execute: addons.add({langs: 'controlsjs'})
-  });
-
-  grunt.registerTask('controls',['controls-debug','controls-release']);
-
-  // == Controls.js: UI ========================================================
-
-  build.defineFiles('controlsjs_ui',[
-    'src/ng_controls/ui/*.js'
-  ]);
-
-  addons.defineLangFiles('controlsjs_ui',{
-    cs: 'src/ng_controls/ui/lang/cs/*.js',
-    en: 'src/ng_controls/ui/lang/en/*.js',
-    sk: 'src/ng_controls/ui/lang/sk/*.js'
-  });
-
-  build.registerTask('controls-ui-raw-debug',{
-    clean: [build.debugBuild('controls-ui.js')],
-    concat: {
-      src: build.getFiles('controlsjs_ui'),
-      dest: build.debugBuild('controls-ui.js')
-    },
-    usebanner: build.debugBanner('controls-ui.js',['controlsjs']),
-    execute: addons.add({langs: 'controlsjs_ui'})
-  });
-
-  build.registerTask('controls-ui-raw-release',{
-    clean: [build.releaseBuild('controls-ui.js')],
-    closurecompiler: {
-      files: build.compilerFiles('controls-ui.js','controlsjs_ui'),
+    closureCompiler: {
       options: {
-        compilation_level: 'SIMPLE_OPTIMIZATIONS',
-        strict_mode_input: 'false'
+        compilerFile: 'node_jar/closure-compiler.jar',
+        compilerOpts: {
+          compilation_level: 'SIMPLE_OPTIMIZATIONS',
+          jscomp_off: ['misplacedTypeAnnotation'],
+          strict_mode_input: false
+        }
+      },
+      release: {
+        files: [{
+          cwd: debugDir,
+          src: ['**/*.js'],
+          dest: releaseDir,
+          expand: true
+        }]
       }
     },
-    usebanner: build.releaseBanner('controls-ui.js','controlsjs'),
-    execute: addons.add({langs: 'controlsjs_ui'})
-  });
-
-  build.registerTask('controls-ui-debug',{
-    'controls-ui-raw-debug': true,
-    'lib_hammerjs-debug': true,
-    concat: {
-      src: [
-        build.debugBuild('hammerjs.js'),
-        build.debugBuild('controls-ui.js')
-      ],
-      dest: build.debugBuild('controls-ui.js')
+    comments: {
+      options: {
+        keepSpecialComments: false
+      },
+      remove: {
+        files: [{
+          cwd: buildPath,
+          src: ['**/*.js'],
+          dest: buildPath,
+          expand: true
+        }]
+      }
     },
-    'clean:lib_hammerjs-debug': true,
-    'clean:lib_knockout-debug': true,
-    'clean:lib_fontloader-debug': true
-  });
+    usebanner: {
+      options: {
+        linebreak: false,
+        process: function(filePath){
+          var banner = '';
 
-  build.registerTask('controls-ui-release',{
-    'controls-ui-raw-release': true,
-    'lib_hammerjs-release': true,
-    concat: {
-      src: [
-        build.releaseBuild('hammerjs.js'),
-        build.releaseBuild('controls-ui.js')
-      ],
-      dest: build.releaseBuild('controls-ui.js')
-    },
-    'clean:lib_hammerjs-release': true,
-    'clean:lib_knockout-release': true,
-    'clean:lib_fontloader-release': true
-  });
+          switch(path.basename(filePath)){
+            case 'json2.js':
+              banner = libsPath+'/lib_json2_header';
+            break;
+            case 'hammerjs.js':
+              banner = libsPath+'/lib_hammerjs_header';
+            break;
+            case 'fontloader.js':
+              banner = libsPath+'/lib_fontloader_header';
+            break;
+            case 'loader.js':
+            case 'controls.js':
+            case 'controls-ui.js':
+              banner = srcPath+'/srcheader.txt';
+            break;
+            case 'en.js':
+            case 'cs.js':
+            case 'sk.js':
+              banner = srcPath+'/srcheader.txt';
+            break;
+          }
 
-  grunt.registerTask('controls-ui-raw',['controls-ui-raw-debug','controls-ui-raw-release']);
-  grunt.registerTask('controls-ui',['controls-ui-debug','controls-ui-release']);
+          if(banner){
+            banner = grunt.file.read(banner);
+            banner = grunt.template.process(banner);
+            banner = normalizeLinebreak(banner+'\n');
+          }
 
-  // == Controls.js: Langs =====================================================
-
-  build.registerTask('langs-debug',{
-    clean: [build.debugBuild('lang/')],
-    execute: addons.outputDebug({ langs: 'lang/' }),
-    usebanner: build.debugBanner('lang/*.js','controlsjs')
-  });
-
-  build.registerTask('langs-release',{
-    clean: [build.releaseBuild('lang/')],
-    execute: addons.outputRelease({ langs: 'lang/' }),
-    usebanner: build.releaseBanner('lang/*.js','controlsjs')
-  });
-
-  grunt.registerTask('langs',['langs-debug','langs-release']);
-
-  // ==  Controls.js JSON file =================================================
-
-  build.registerTask('controls-json',{
-    clean: ['build/controls.json'],
-    copy: {
-      files: [{
-        src: 'controls.json',
-        dest: 'build/controls.json'
-      }]
+          return banner;
+        }
+      },
+      files: {
+        cwd: buildPath,
+        src: ['**/*.js'],
+        dest: buildPath,
+        expand: true
+      }
     }
   });
 
-  grunt.registerTask('clean-json',['clean:controls-json']);
-  grunt.registerTask('copy-json',['copy:controls-json']);
+  grunt.task.registerTask(
+    'exportJSON',
+    'Exports controls.json file',
+    function(){
+      if(controlsJSON.Packages){
+        for(var packageName in controlsJSON.Packages){
+          var package = controlsJSON.Packages[packageName];
+          var debugFiles = package.DebugFiles;
+          var releaseFiles = package.ReleaseFiles;
 
-  // == Clean ==================================================================
-
-  build.registerConfig('clean-debug',{
-    clean: [build.debugBuild()]
-  });
-
-  build.registerConfig('clean-release',{
-    clean: [build.releaseBuild()]
-  });
-
-  grunt.registerTask('clean-debug',['clean:clean-debug']);
-  grunt.registerTask('clean-release',['clean:clean-release']);
-  grunt.registerTask('clean',['clean-debug','clean-release','clean-json']);
-
-  // == Builds =================================================================
-
-  grunt.registerTask('debug',[
-    'clean-debug',
-    'loader-debug',
-    'controls-debug',
-    'controls-ui-debug',
-    'langs-debug'
-  ]);
-
-  grunt.registerTask('release',[
-    'clean-release',
-    'loader-release',
-    'controls-release',
-    'controls-ui-release',
-    'langs-release'
-  ]);
+          if(debugFiles){
+            for(var i in debugFiles){
+              debugFiles[i] = debugPath+'/'+debugFiles[i];
+            }
+          }
+          if(releaseFiles){
+            for(var j in releaseFiles){
+              releaseFiles[j] = releasePath+'/'+releaseFiles[j];
+            }
+          }
+        }
+      }
+      grunt.file.write(
+        buildPath+'/controls.json',
+        JSON.stringify(controlsJSON,null,2)
+      );
+    }
+  );
 
   grunt.registerTask('build',[
-    'clean',
-    'loader',
-    'controls',
-    'controls-ui',
-    'langs',
-    'copy-json'
+    'clean:build',
+    'copy:lib_json2_debug','concat:lib_json2_debug',
+    'copy:lib_hammerjs_debug','concat:lib_hammerjs_debug',
+    'copy:lib_fontloader_debug','concat:lib_fontloader_debug',
+
+    'copy:loader_src_debug','concat:loader_src_debug',
+    'copy:core_src_debug','copy:core_imgs_debug','concat:core_src_debug',
+    'copy:ui_src_debug','concat:ui_src_debug',
+
+    'copy:lang_en_debug','concat:lang_en_debug',
+    'copy:lang_cs_debug','concat:lang_cs_debug',
+    'copy:lang_sk_debug','concat:lang_sk_debug',
+
+    'closureCompiler:release','copy:imgs_release',
+    'clean:temp','comments:remove','usebanner',
+    
+    'exportJSON',
+    'copy:license'
   ]);
 
   grunt.registerTask('default','build');
 
-  // ---------------------------------------------------------------------------
-
-  grunt.initConfig(config);
-
-  //Load the plugins
-  addons.loadPlugins();
-  grunt.loadNpmTasks('grunt-closurecompiler');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-closure-tools');
+  grunt.loadNpmTasks('grunt-stripcomments');
   grunt.loadNpmTasks('grunt-banner');
-  grunt.loadNpmTasks('grunt-execute');
 };

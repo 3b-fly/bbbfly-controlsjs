@@ -5,42 +5,36 @@
   "Copyright": "Position s.r.o.",
   "Packages": {
 
-    "DesignInfo": {
-      "Group": "controlsjs",
-      "FormEditor": false,
-      "DesignInfoFiles": ["debug/designinfo.js"]
-    },
-
     "Lang EN": {
       "Group": "controlsjs",
       "FormEditor": false,
-      "DebugFiles": ["debug/lang/en.js"],
-      "ReleaseFiles": ["release/lang/en.js"]
+       "DebugFiles": ["lang/en.js"],
+       "ReleaseFiles": ["lang/en.js"]
     },
     "Lang CS": {
       "Group": "controlsjs",
       "FormEditor": false,
-      "DebugFiles": ["debug/lang/cs.js"],
-      "ReleaseFiles": ["release/lang/cs.js"]
+       "DebugFiles": ["lang/cs.js"],
+       "ReleaseFiles": ["lang/cs.js"]
     },
     "Lang SK": {
       "Group": "controlsjs",
       "FormEditor": false,
-      "DebugFiles": [ "debug/lang/sk.js"],
-      "ReleaseFiles": ["release/lang/sk.js"]
+       "DebugFiles": [ "lang/sk.js"],
+       "ReleaseFiles": ["lang/sk.js"]
     },
 
     "Loader": {
       "Group": "controlsjs",
       "FormEditor": false,
-      "DebugFiles": ["debug/loader.js"],
-      "ReleaseFiles": ["release/loader.js"]
+      "DebugFiles": ["loader.js","json2.js"],
+      "ReleaseFiles": ["loader.js","json2.js"]
     },
     "Controls.js": {
       "Group": "controlsjs",
       "FormEditor": false,
-      "DebugFiles": ["debug/controls.js"],
-      "ReleaseFiles": ["release/controls.js"],
+      "DebugFiles": ["controls.js","fontloader.js"],
+      "ReleaseFiles": ["controls.js","fontloader.js"],
 
       "Libraries": {
         "controls.js": {
@@ -51,8 +45,8 @@
     "Controls.js UI": {
       "Group": "controlsjs",
       "FormEditor": false,
-      "DebugFiles": ["debug/controls-ui.js"],
-      "ReleaseFiles": ["release/controls-ui.js"],
+      "DebugFiles": ["controls-ui.js","hammerjs.js"],
+      "ReleaseFiles": ["controls-ui.js","hammerjs.js"],
 
       "Libraries": {
         "controls.js": {

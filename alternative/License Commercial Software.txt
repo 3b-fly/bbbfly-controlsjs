@@ -1,0 +1,321 @@
+
+   AGREEMENT ON SUPPLY OF SOFTWARE PRODUCT AND GRANTING RIGHTS OF USE TO THE
+                                    PRODUCT
+                                        
+         concluded pursuant to provision of Section 1746 par. 2 of the
+                  Act No. 89/2012., the Civil Code, as amended
+
+                             
+                             1. Contracting Parties
+
+1.1. The Contractor:
+
+Firm:               Position s.r.o.
+Registered office:  Prague 2, Londynska 665/45, 120 00, Czech Republic
+Statutory body:     Jiri Tulach, executive, and Petr Masek, executive
+                    Company identification No.: 26422816, 
+                    tax identification No.: CZ26422816
+
+The company is incorporated in the Companies Register kept by the Municipal 
+Court in Prague, Section C, Insert No. 81053
+
+1.2. The Licensee:  The party accepting Agreement proposal and agreeing 
+                    with conclusion hereof.
+
+The Parties conclude this Agreement by which the Contractor undertakes to 
+supply the below specified software and to transfer rights of use to the 
+software and the Licensee undertakes to take it over and to pay the price 
+for Software use in the case of a commercial Software use by the Licensee. 
+
+
+             2. Subject of the Agreement and fundamental provisions
+
+1)  By this Agreement the Contractor undertakes to supply the Licensee 
+    with program products for the development of Controls.js applications 
+    (hereinafter referred to as the “Software”) according to the Licensee´s 
+    order for a number of users selected by the Licensee and to transfer the 
+    right of use to the Software to the Licensee and the Licensee undertakes 
+    to pay the agreed price in case of using the Software for commercial 
+    purposes. For the purposes of this Agreement the transfer of the right 
+    of use is understood in the following manner: the Contractor shall provide 
+    the supply of authorizations to use the Software (licenses) which are 
+    granted to the Licensee by the author or person which the author granted 
+    authorization to if the author and the Contractor are different persons. 
+
+2)  The Contractor hereby declares that the Software contains other works of 
+    third parties. 
+
+3)  The Contractor hereby declares that it is not aware of any legal defects 
+    of the Software and pursuant to the interpretation of the license 
+    agreements of the owners of program products copyrights, if these owners 
+    are not the Contractor, it is authorized to licensed sale of the Software 
+    and to conclude this Agreement.   
+
+4)  The Contractor undertakes by this Agreement to transfer the right of use 
+    to the Software and the Licensee acquires the right of use to the Software 
+    under terms listed in the subject license. 
+
+5)  The Licensee hereby declares that it is well aware of the terms of the 
+    subject license, in particular the fact that the granted license rights 
+    are not exclusive and non-transferable to third parties and it is 
+    familiarized with them and it hereby undertakes to adhere to them and 
+    respect them. 
+
+
+                           3. Methods of Software use
+
+A)  Use of the Software for noncommercial purposes
+
+1)  Use of the Software for noncommercial purposes is understood as any use 
+    of the Software when the Licensee does not seek profit realization and 
+    profit is not realized by using the Software. Noncommercial use is also 
+    understood as using the Software for purposes of its evaluation, testing 
+    and further development of the software under the condition that if the 
+    Software is further developed, the final product may not be of a 
+    commercial alternative nature to the software. The Licensee of the 
+    Software for noncommercial purposes shall not be provided with Software 
+    updates and its support. 
+
+B)  Use of the Software products for commercial purposes 
+
+1)  Use of the Software for commercial purposes is understood as using the 
+    Software for the purpose of realization of profit or for the purpose 
+    of a further use of the Software as part of other Licensee´s products 
+    (final product) under the condition that the final product may not be 
+    of a commercial or noncommercial alternative nature to the Software. 
+
+2)  If a party interested in purchasing the Software intends to further use 
+    or develop the Software for the purpose of creation of its own 
+    development system, system for development of web application or for 
+    the purpose of developing its own environment for website creation, it 
+    is obliged to request the Contractor to issue a special license (OEM). 
+    The license to the Software does not serve for these purposes. 
+
+3)  If a party interested in purchasing the Software intends to further use 
+    or develop the Software for the purpose of its distribution jointly with 
+    HW device in the form of preinstalled Software, it is obliged to request 
+    the Contractor to issue a special license (OEM) if the total number of 
+    HW devices does exceed 1000 devices. The license to the Software does 
+    not serve for these purposes.
+
+4)  The Licensee using the Software for commercial use is entitled to 
+    provision of support services to the software product from the Contractor 
+    for the duration of the period stated in the Licensee´s order. 
+
+5)  The Contractor does not provide service support to the final products of 
+    the Licensee by any means.
+
+6)  Long-term maintenance comprises of modification of the Software for the 
+    purpose of adjustment of performance and other properties. It includes 
+    the following:
+
+    a) The right to delivery of a new Software version.
+    b) Informational email regarding release of a new Software version 
+       including description of what is new in the version.
+    c) Provision of support in the form of replies to email enquiries of 
+       the Licensee (email support). 
+
+7)  The Licensee has the right to 50 email-support questions per year and 
+    the Contractor undertakes to provide the necessary support by replies 
+    to these questions within 72 hours on working days from receiving the 
+    question. The Contractor´s working days are Monday – Friday 8:00-17:00 
+    (8am – 5pm) GMT +1. In the question the Licensee is obliged to state 
+    information which allows identification of its license. 
+
+8)  The Licensee is obliged to immediately inform the provider in writing 
+    if the Software requires maintenance or if it does not work properly. 
+
+
+                    4. Time, place and method of fulfillment
+
+1)  The Contractor shall allow the Licensee to download the Software by 
+    an email message which shall contain link for Software download. The 
+    Licensee explicitly agrees with this method of download.
+
+2)  Software installation shall be executed by the Licensee at its own 
+    risk and expenses. 
+
+3)  The Licensee undertakes to ensure that in the case of purchasing the 
+    commercial license the number of Licensee´s employees and developers, 
+    who shall be authorized to use the Software, shall be the same as the 
+    number of licenses purchased by the Licensee. 
+
+
+                           5. Price and payment terms
+
+1)  The Contracting Parties arrange the remuneration (price) which the 
+    Licensee shall pay to the Contractor in accordance with Licensee´s 
+    order made during Software order process in electronic form.  
+
+2)  The above mentioned price does not include European Union value added 
+    tax (VAT) and the Licensee takes notice that the Contractor is a VAT 
+    payer. 
+
+3)  The Agreed price results from currently valid price list of the 
+    Contractor for Software at the moment of conclusion hereof. The 
+    Licensee takes notice that expenses of the Contractor or expenses 
+    paid by the Contractor which are not mentioned herein are not included 
+    in amounts listed herein and the Contractor is authorized to charge 
+    these expenses individually after substantiation and the Licensee 
+    is obliged to pay these expenses to the Contractor. 
+
+
+     6. Ownership right and transfer of damage risk to the program products
+
+1)  The Licensee is authorized to use the Software in accordance with 
+    license terms which shall be handed over to the Licensee. The Licensee 
+    is obliged to ensure respecting of these provisions and provisions of 
+    the license terms by its employees and third parties which shall be 
+    in contact with the subject Software in any way. 
+
+2)  In particular, the Licensee is not authorized to operate, use, copy 
+    or change the program product other than as specified in the license 
+    terms.
+
+3)  The risk of damage to things, HW and SW, supplied to the Licensee by 
+    the Contractor shall pass to the Licensee at the moment of their 
+    takeover, respectively supply. 
+
+4)  Damage to a thing, HW or SW, which originated after transfer of its 
+    risk to the Licensee, does not affect its obligation to pay the agreed 
+    price unless the damage was caused exclusively by violation of 
+    Contractor´s obligation. 
+
+
+                         7. Warranty and responsibility
+
+1)  The Contractor is responsible for ensuring that the subject of 
+    fulfillment, in accordance with individual specific agreements 
+    concluded between the Licensee and the Contractor, has the properties 
+    determined by binding standards, concluded agreements of the Parties 
+    hereof, for at least 6 months and the Contractor is also responsible 
+    for ensuring that the subject of the fulfillment is complete and 
+    without legal defects. 
+
+2)  The warranty period is 6 months and commences on the day of Software 
+    download in accordance with this Agreement. The Licensee is obliged to 
+    inform the Contractor about legal defects without undue delay after it 
+    discovers these defects. 
+
+3)  The Software has legal defects if it is burdened with a right of 
+    a third party and the Licensee has not been informed about this burden. 
+
+4)  The Licensee is obliged to inspect the subject of the fulfillment, 
+    respectively its part, at takeover and inform the Contractor about 
+    defects without undue delay after discovery of the defects, however, 
+    at the latest within the end of the warranty period.  
+
+5)  The Licensee is obliged to object defects detectable at takeover, 
+    respectively delivery (obvious defects), i.e. defects in amount 
+    and versions, at the latest within 5 working days from the takeover, 
+    respectively delivery, to the Contractor in writing. After this period 
+    the Contractor is obliged to remove such defects solely if the Licensee 
+    proves that the goods had such defects already at delivery and the 
+    Licensee could not have discovered these defects at the delivery.
+
+6)  In a complaint, in notification of defects, the defect shall be described, 
+    eventually the Licensee is obliged to state in what way the defect 
+    manifests and the complaint and notification shall also contain the 
+    method of requested repair. According to circumstance the complaint 
+    shall also contain evidence which shall allow verification of the 
+    justifiability of the complaint. The exercised method of remedy of 
+    the defects may not be changed by the Licensee without a written 
+    agreement of the Contractor. 
+
+7)  Liability rights extinct if the complaint is not filed at the latest 
+    within the end of the warranty period. 
+
+8)  Warranty period does not run for the length of the period during which 
+    the Licensee is not able to use the things due to defects which the 
+    Contractor is responsible for. 
+
+9)  The Contractor is obliged to remove the defects claimed in the warranty 
+    period free of charge within 30 days if it is technically and legally 
+    possible and if participation of the Licensee or a third party is not 
+    required. In case of the necessity of the Licensee´s participation or 
+    participation of a third party the subject period is extended 
+    appropriately by the period for which the Licensee or a third party 
+    were obliged to execute anything, eventually for a period for which 
+    these parties were inactive. 
+
+10) The Contractor is not responsible for deterioration of the properties 
+    of the subject of fulfillment or for damages which were caused during 
+    or after fulfillment by the Licensee, other Contractor of the Licensee 
+    or eventually any other party other than the Contractor, or for damages 
+    which were caused by unavoidable events.  
+
+    In particular, the warranty does not apply to the following cases of 
+    damage of the HW, SW and the system:
+
+    a) damage caused by unprofessional manipulation,
+    b) damage caused by supply or failure of electric power supply which 
+       does not fulfill the specification for the given device including 
+       lightning and momentary voltage peaks,
+    c) damage caused by natural disasters,
+    d) damage as a consequence of a break-in, or commission of a crime 
+       or offence,
+    e) virus infection by computer viruses caused by negligent manipulation 
+       by the Licensee or third parties,
+    f) damage caused by incorrect Software use, unprofessional modification 
+       of the application program or system program equipment and environment 
+       including modification of system configuration,
+    g) errors originating from placing computers or information media in 
+       unsuitable environment such as humidity, dustiness, electromagnetic 
+       interference and electrostatic discharges.
+    h) reinstallation of deleted software of software damaged 
+       by unprofessional manipulation.
+
+11) The Contractor is not responsible for the consequences of use of the 
+    Software by the Licensee. In this regard the Contractor is simultaneously 
+    not liable for system malfunctions caused by the fact that it is used 
+    by the Licensee or third parties for activities which it was not designed 
+    for (e.g. for training, games etc.) and for a result expected by the 
+    Licensee which depends on the level of knowledge and abilities of the end 
+    Licensees of the system and on the fact that these Licensees do not 
+    make any errors or mistakes during system use. 
+
+12) The Licensee is liable for any damages that incur to the Contractor or 
+    license author as a consequence of license terms violation, in particular 
+    as a consequence of copyright violation.  
+
+
+                        8. Withdrawal from the Agreement
+
+1)  The Contracting Parties agree that delivery of Software with irremovable 
+    defects which render the Software inapplicable in standard manner in 
+    accordance with the supplied documentation and failure to remove the 
+    defects by the Contractor by claimed method in the period of 60 working 
+    days is considered as a reason for the Licensee to withdraw from the 
+    Agreement. 
+
+2)  The Contracting Parties agree that delay in payment of the agreed part 
+    of the purchase price by more than 60 days or violation of license terms 
+    is a reason for which the Contractor is authorized to withdraw from 
+    the Agreement. 
+
+
+                                9. Governing law
+
+1)  The issues which are not regulated or issues which are only partly 
+    regulated by this Agreement are subject to the law of the Czech Republic, 
+    in particular the Act No. 89/2012 Coll., the Civil Code.
+
+2)  This Agreement is concluded and interpreted in accordance with the Czech 
+    laws and other generally binding applicable norms. 
+
+
+                              10. Final provisions
+
+1)  The Agreement becomes effective and valid on the day of its conclusion 
+    by both Contracting Parties. The Agreement is concluded electronically 
+    in the English language. 
+
+2)  Both Contracting Parties declare that they have read this Agreement 
+    before its conclusion and that it was concluded after mutual discussion 
+    as an expression of their free will, definitely, seriously and 
+    comprehensibly and the Contracting Parties are not under pressure or 
+    under strikingly unfavorable conditions.
+
+3)  Part of the Software is the license of third parties of conditions for 
+    provision of license to their works.   
+  

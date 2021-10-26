@@ -1,0 +1,5 @@
+/*!
+ * FontLoader.js v<%= pkg.lib_FontLoader.version %>
+ * (c) 2013 Simon Hanukaev - <%= pkg.lib_FontLoader.homepage %>
+ * License: <%= pkg.lib_FontLoader.licenses[0].type %> (<%= pkg.lib_FontLoader.licenses[0].url %>)
+ */
