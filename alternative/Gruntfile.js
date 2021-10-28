@@ -15,11 +15,6 @@ module.exports = function(grunt){
   var packageJSON = grunt.file.readJSON('package.json');
   var controlsJSON = grunt.file.readJSON('controls.json');
 
-  controlsJSON.Lib = packageJSON.name;
-  controlsJSON.Version = packageJSON.version;
-  controlsJSON.Name = packageJSON.description;
-  controlsJSON.Copyright = packageJSON.author.name;
-
   var normalizeLinebreak = function(text){
     return text.replace(/( |\t)*(\r\n|\n\r|\r|\n)/g,'\n');
   };
